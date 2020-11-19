@@ -22,8 +22,9 @@ if (NOT ${PROJECT_NAME}-MultiBuild)
       CMAKE_ARGS
         -DLIBNAME=${builder_name}
         -DPARAMETER=${parameter}
-        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/out/${outdir}
+        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/out
         -D${PROJECT_NAME}-MultiBuild=ON
+        -DOUTDIR=${outdir}
         -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
         -DCMAKE_ASM-ATT_COMPILER=${CMAKE_ASM-ATT_COMPILER}
     )
@@ -90,5 +91,9 @@ if(SHARED_BUILD)
 else()
   add_library(${LIBNAME} STATIC ${SOURCE_FILE})
 endif(SHARED_BUILD)
-set_target_properties(${LIBNAME} PROPERTIES OUTPUT_NAME "c")
-install(TARGETS ${LIBNAME})
+
+# add properties and install
+set_target_properties(${LIBNAME} PROPERTIES
+  DEBUG_POSTFIX "d"
+  OUTPUT_NAME "c")
+install(TARGETS ${LIBNAME} DESTINATION "lib/${OUTDIR}")
