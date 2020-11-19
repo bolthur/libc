@@ -12,12 +12,17 @@ if (NOT ${PROJECT_NAME}-MultiBuild)
 
   macro (setup_library library_name output_path parameter)
     string(REGEX REPLACE "/" "-" builder_name "${library_name}")
+    # build out dir
+    set(outdir "")
+    if(NOT "${output_path}" STREQUAL "default")
+      set(outdir "/${output_path}")
+    endif()
     ExternalProject_Add(${builder_name}-builder
       SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
       CMAKE_ARGS
         -DLIBNAME=${builder_name}
         -DPARAMETER=${parameter}
-        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/out/${output_path}
+        -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/out/${outdir}
         -D${PROJECT_NAME}-MultiBuild=ON
         -DCMAKE_C_COMPILER=${CMAKE_C_COMPILER}
         -DCMAKE_ASM-ATT_COMPILER=${CMAKE_ASM-ATT_COMPILER}
@@ -49,7 +54,11 @@ if (NOT ${PROJECT_NAME}-MultiBuild)
     list(GET line_inner 1 conf)
     # skip dot
     if("." STREQUAL ${output})
-      continue()
+      set(output "default")
+      EXECUTE_PROCESS( COMMAND bash -c "echo | ${CMAKE_C_COMPILER} -v -E - 2>&1 | grep cc1 | cut -d\" \" -f3-"  COMMAND tr -d '\n' OUTPUT_VARIABLE conf)
+      string(REPLACE " - " ";" conf ${conf})
+      # get configuration
+      list(GET conf 1 conf)
     endif()
     # tidy up conf to command line arguments
     string(REGEX REPLACE "@" " -" conf "${conf}")
@@ -61,8 +70,8 @@ if (NOT ${PROJECT_NAME}-MultiBuild)
 endif()
 
 # set flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${PARAMETER}")
-set(CMAKE_ASM-ATT_FLAGS "${CMAKE_ASM_FLAGS} ${PARAMETER}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${PARAMETER} -nostdlib")
+set(CMAKE_ASM-ATT_FLAGS "${CMAKE_ASM_FLAGS} ${PARAMETER} -nostdlib")
 
 # enable languages
 ENABLE_LANGUAGE(ASM-ATT)
