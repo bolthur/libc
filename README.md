@@ -9,37 +9,37 @@ Some progress page.
 
 ### Finished header file content
 
-| File          | Status   |
-| ------------- | :------: |
-| assert.h      | &cross;  |
-| complex.h     | &cross;  |
-| ctype.h       | &cross;  |
-| errno.h       | &cross;  |
-| fenv.h        | &cross;  |
-| float.h       | &cross;  |
-| inttypes.h    | &cross;  |
-| iso646.h      | &cross;  |
-| limits.h      | &cross;  |
-| locale.h      | &cross;  |
-| math.h        | &cross;  |
-| setjmp.h      | &cross;  |
-| signal.h      | &cross;  |
-| stdalign.h    | &cross;  |
-| stdarg.h      | &cross;  |
-| stdatomic.h   | &cross;  |
-| stdbool.h     | &check;  |
-| stddef.h      | &cross;  |
-| stdint.h      | &cross;  |
-| stdio.h       | &cross;  |
-| stdlib.h      | &cross;  |
-| stdnoreturn.h | &check;  |
-| string.h      | &cross;  |
-| tgmath.h      | &cross;  |
-| threads.h     | &cross;  |
-| time.h        | &cross;  |
-| uchar.h       | &cross;  |
-| wchar.h       | &cross;  |
-| wctype.h      | &cross;  |
+| File          | Introduced | Status   |
+| ------------- | :--------: | :------: |
+| assert.h      |            | &cross;  |
+| complex.h     | c99        | &cross;  |
+| ctype.h       |            | &cross;  |
+| errno.h       |            | &cross;  |
+| fenv.h        | c99        | &cross;  |
+| float.h       |            | &cross;  |
+| inttypes.h    | c99        | &cross;  |
+| iso646.h      | c95        | &cross;  |
+| limits.h      |            | &cross;  |
+| locale.h      |            | &cross;  |
+| math.h        |            | &cross;  |
+| setjmp.h      |            | &cross;  |
+| signal.h      |            | &cross;  |
+| stdalign.h    | c11        | &cross;  |
+| stdarg.h      |            | &cross;  |
+| stdatomic.h   | c11        | &cross;  |
+| stdbool.h     | c99        | &cross;  |
+| stddef.h      |            | &cross;  |
+| stdint.h      | c99        | &cross;  |
+| stdio.h       |            | &cross;  |
+| stdlib.h      |            | &cross;  |
+| stdnoreturn.h | c11        | &cross;  |
+| string.h      |            | &cross;  |
+| tgmath.h      | c99        | &cross;  |
+| threads.h     | c11        | &cross;  |
+| time.h        |            | &cross;  |
+| uchar.h       | c11        | &cross;  |
+| wchar.h       | c95        | &cross;  |
+| wctype.h      | c95        | &cross;  |
 
 ### Finished function content
 
@@ -72,6 +72,17 @@ Some progress page.
 | uchar.h       | &cross;  |
 | wchar.h       | &cross;  |
 | wctype.h      | &cross;  |
+
+
+### Supported standards
+
+| Standart | Status  |
+| :------: | :-----: |
+| c90      | &cross; |
+| c94/c95  | &cross; |
+| c99      | &cross; |
+| c11      | &cross; |
+| c17/c18  | &cross; |
 
 ## Notes
 

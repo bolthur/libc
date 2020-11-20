@@ -2,6 +2,7 @@
 #if !defined( BLIBC_TIME_H )
 #define BLIBC_TIME_H
 
+#include <config.h>
 #include <stddef.h>
 
 #if defined( __cplusplus )
@@ -24,15 +25,15 @@ struct tm {
   int tm_isdst; /* daylight saving time flag */
 };
 
-clock_t clock( void );
-double difftime( time_t, time_t );
-time_t mktime( struct tm* );
-time_t time( time_t* );
-char* asctime( const struct tm* );
-char *ctime( const time_t* );
-struct tm* gmtime( const time_t* );
-struct tm* localtime( const time_t* );
-size_t strftime( char*, size_t, const char*, const struct tm* );
+_BLIBC_PUBLIC clock_t clock( void );
+_BLIBC_PUBLIC double difftime( time_t, time_t );
+_BLIBC_PUBLIC time_t mktime( struct tm* );
+_BLIBC_PUBLIC time_t time( time_t* );
+_BLIBC_PUBLIC char* asctime( const struct tm* );
+_BLIBC_PUBLIC char *ctime( const time_t* );
+_BLIBC_PUBLIC struct tm* gmtime( const time_t* );
+_BLIBC_PUBLIC struct tm* localtime( const time_t* );
+_BLIBC_PUBLIC size_t strftime( char*, size_t, const char*, const struct tm* );
 
 #if defined( __cplusplus )
 }
